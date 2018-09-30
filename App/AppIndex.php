@@ -4,6 +4,7 @@ namespace App;
 use Core\GFStarter;
 use Core\Controllers\GFSessions\GFSessionController;
 use Core\Controllers\Http\Psr\Response;
+use Core\Controllers\i18nController;
 
 class AppIndex {
 	
@@ -73,7 +74,7 @@ class AppIndex {
 		
 		
 		$this->GFStarter->withRoute("all", "/func", function() {
-			Response::getResponseInstance()->writeToBody("<b>It Works!</b>");
+			Response::getResponseInstance()->writeToBody("<b>It Works! lang: </b>" . i18nController::getDefaultLanguage() . "--" . GFSessionController::getInstance()->getSessionModel()->getUserLang());
 		});
 	}
 }

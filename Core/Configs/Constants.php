@@ -34,7 +34,7 @@ const GF_DEFAULT_SESSION = "gf_default";
 
 //HOST CONFIGURATION
 define("DOMAIN_HOST","localhost");
-define("DOMAIN_PATH","/GolgoFrameworkRework");
+define("DOMAIN_PATH","/GolgoFramework2018");
 
 
 //REDIS CACHE

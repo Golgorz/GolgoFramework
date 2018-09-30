@@ -38,7 +38,6 @@ class GFSessionController {
 			$model =  new GFSessionModel();
 			$model->initializeValues();
 			$this->put("sessionModel", $model);
-			$model->setUserLang(i18nController::getDefaultLanguage());
 		}
 	}
 
@@ -54,6 +53,10 @@ class GFSessionController {
 		$this->put("LAST_ACTIVITY", time());
 	}
 
+	/**
+	 *
+	 * @return GFSessionModel
+	 */
 	public function getSessionModel() {
 		return $this->get("sessionModel");
 	}

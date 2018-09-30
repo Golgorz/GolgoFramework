@@ -1,10 +1,10 @@
 <?php
 namespace Core\GFModels;
 use Core\Helpers\Utils;
-use Core\Controllers\GFSessions\GFSessionController;
 use Core\Controllers\i18nController;
 
 class GFSessionModel {
+	
 	protected $userModel;
 	protected $userId;
 	protected $userIp;
@@ -22,14 +22,14 @@ class GFSessionModel {
 		$this->userCart = array();
 		$this->userExtra = array();
 		$this->status = false;
-		$this->userLang = "";
+		$this->userLang = i18nController::getDefaultLanguage();
 	}
 	public function getUserModel() {
 		return $this->userModel;
 	}
 	public function setUserModel($userModel) {
 		$this->userModel = $userModel;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getUserId() {
@@ -37,7 +37,7 @@ class GFSessionModel {
 	}
 	public function setUserId($userId) {
 		$this->userId = $userId;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getUserIp() {
@@ -45,7 +45,7 @@ class GFSessionModel {
 	}
 	public function setUserIp($userIp) {
 		$this->userIp = $userIp;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getUserCart() {
@@ -53,7 +53,7 @@ class GFSessionModel {
 	}
 	public function setUserCart($userCart) {
 		$this->userCart = $userCart;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getUserExtra() {
@@ -62,7 +62,7 @@ class GFSessionModel {
 	}
 	public function setUserExtra($userExtra) {
 		$this->userExtra = $userExtra;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getStatus() {
@@ -70,7 +70,7 @@ class GFSessionModel {
 	}
 	public function setStatus($status) {
 		$this->status = $status;
-		$this->autoSave();
+		
 		return $this;
 	}
 	public function getUserLang() {
@@ -78,14 +78,10 @@ class GFSessionModel {
 	}
 	public function setUserLang($userLang) {
 		$this->userLang = $userLang;
-		$this->autoSave();
+		
 		return $this;
 	}
 
-	private function autoSave() {
-		$session = GFSessionController::getInstance();
-		$session->saveSessionModel($this);
-	}
 
 
 }

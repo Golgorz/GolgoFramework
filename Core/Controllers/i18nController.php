@@ -10,6 +10,7 @@ use Core\Controllers\GFSessions\GFSessionController;
  * @version 0.0.1
  */
 class i18nController {
+	
 	public static function localization() {
 		static $localeData = NULL;
 		if (is_null($localeData)) {
@@ -43,17 +44,10 @@ class i18nController {
 	}
 
 	public static function getDefaultLanguage() {
-	 	$session = GFSessionController::getInstance();
-	    $lang = $session->getSessionModel()->getUserLang();
-
-	    if($lang != "") {
-	        return $lang;
-	    } else {
-	        if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
-	            return self::parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-	            else
-	                return self::parseDefaultLanguage(NULL);
-	    }
+		if(isset($_SERVER ["HTTP_ACCEPT_LANGUAGE"]))
+			return self::parseDefaultLanguage($_SERVER ["HTTP_ACCEPT_LANGUAGE"]);
+		else
+			return self::parseDefaultLanguage(NULL);
 	}
 
 	public static function parseDefaultLanguage($http_accept, $deflang = DEFAULT_LOCALIZATION) {

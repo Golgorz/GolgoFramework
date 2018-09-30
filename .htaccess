@@ -1,0 +1,20 @@
+Options -Indexes
+
+RewriteEngine on
+
+
+RewriteCond %{REQUEST_URI} ^/([^/.]*)?/modules
+RewriteRule modules/([^/.]*)?/(.+)$ Modules/$1/Public/$2 [NC,L]
+
+RewriteCond %{REQUEST_URI} !^/GolgoFrameworkRemastered/modules
+RewriteCond %{REQUEST_URI} !^/GolgoFrameworkRemastered/Modules
+RewriteRule (css|js|images|img|fonts|vendors|assets)/(.+)$ Public/$1/$2 [NC,L]
+
+
+RewriteCond %{REQUEST_URI} !(\.css|\.js|\.png|\.jpg|\.gif|robots\.txt)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f  
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^(.*)$  index.php
+
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}

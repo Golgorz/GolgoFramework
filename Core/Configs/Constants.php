@@ -4,10 +4,6 @@ include_once 'EventConstants.php';
 
 date_default_timezone_set("Europe/Madrid");
 
-if (!defined('DS')) {
-	define('DS', DIRECTORY_SEPARATOR);
-}
-
 
 //MYSQL DATABASE
 define("MYSQL_HOST", 'localhost');
@@ -20,21 +16,31 @@ define("DB_DRIVER", 'pdo_mysql');
 
 //SESSION OPTIONS
 define("SESSION_LENGTH", 3600); //30 MINS
+define("SESSIONS_SYSTEM_ACTIVE", true);
+define ("GF_GLOBAL_SESSION", "gf_session");
+define ("GF_DEFAULT_SESSION", "gf_default");
 
+//LOCALIZATION
 define("LOCALIZATION_ENABLED", true);
 define("DEFAULT_LOCALIZATION", "es");
-define("GF_EVENTS_ENABLED", true);
-define("JWT_SINGLE_SESSIONS_ONLY", true );
 
-const GF_GLOBAL_SESSION = "gf_session";
-const GF_DEFAULT_SESSION = "gf_default";
 
+
+//EVENTS
+define("EVENTS_SYSTEM_ACTIVE", true);
+
+
+//LOGGING
+define("LOGGING_ENABLED", true);
+define("LOGGING_TO_FILE", true);
+define("LOGGING_TO_MYSQL", true);
 
 
 
 //HOST CONFIGURATION
 define("DOMAIN_HOST","localhost");
-define("DOMAIN_PATH","/GolgoFramework2018");
+
+define("DOMAIN_PATH","GolgoFramework2018");
 
 
 //REDIS CACHE

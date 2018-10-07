@@ -8,10 +8,7 @@ use Core\Controllers\Http\Psr\Request;
 use Core\Controllers\Router\Router;
 use Core\Controllers\Router\RouteModel;
 
-require_once __DIR__ .'/Configs/Constants.php';
 
-if(file_exists( __DIR__ .'/Vendors/autoload.php'))
-	require_once __DIR__ .'/Vendors/autoload.php';
 
 class GFStarter {
 
@@ -25,6 +22,7 @@ class GFStarter {
 	private function __construct() {
 		
 		self::$routerCollection = RouteCollection::getInstance();
+		
 		
 	}
 	
@@ -50,6 +48,7 @@ class GFStarter {
 	 * @param array $modules
 	 */
 	public function loadModules($modules) {
+		
 	    GFEventController::triggerWithEventName(LOAD_MODULES_BEFORE);
 		foreach ($modules as $loader) {
 			new $loader(self::$routerCollection);

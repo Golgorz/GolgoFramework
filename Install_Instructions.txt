@@ -10,3 +10,4 @@ Install composer, run composer install to load library dependencies.
 	PSR-3 MONOLOG
 	PSR-4
 	PSR-6 UNDER DEV
+	PSR-7

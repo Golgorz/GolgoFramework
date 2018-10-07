@@ -1,5 +1,4 @@
 <?php
-
 function namespaceAutoloads($class) {
 
 	if(file_exists($class . ".php")) {
@@ -15,3 +14,8 @@ function namespaceAutoloads($class) {
 	}
 }
 spl_autoload_register('namespaceAutoloads');
+
+require_once __DIR__ .'/Configs/Constants.php';
+
+if(file_exists( __DIR__ .'/Vendors/autoload.php'))
+	require_once __DIR__ .'/Vendors/autoload.php';

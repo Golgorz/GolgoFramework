@@ -2,7 +2,6 @@
 namespace Core\Controllers;
 
 
-use Core\Controllers\GFSessions\GFSessionController;
 
 /**
  * UNDER DEVELOPMENT
@@ -11,10 +10,14 @@ use Core\Controllers\GFSessions\GFSessionController;
  */
 class i18nController {
 	
-	public static function localization() {
+	/**
+	 *
+	 * @param string $localization custom language code to load (default DEFAULT_LOCALIZATION constant)
+	 * @return array key values translations
+	 */
+	public static function localization($localization = DEFAULT_LOCALIZATION) {
 		static $localeData = NULL;
 		if (is_null($localeData)) {
-			$localization = GFSessionController::getInstance()->getSessionModel()->getUserLang();
 			$langFile = ROOT_PATH . '/App/Localization/' . $localization . '.json';
 			$langBase = ROOT_PATH . '/App/Localization/' . DEFAULT_LOCALIZATION . '.json';
 			if (!file_exists($langFile) || $localization == DEFAULT_LOCALIZATION) {

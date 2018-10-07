@@ -4,12 +4,13 @@ namespace Core\Controllers\Router;
 
 use Core\Controllers\GFEvents\GFEventController;
 use Core\Controllers\Http\Psr\Request;
+use Core\Helpers\Utils;
 
 class Router {
 
 	private $routeCollection;
 	private $namedRoutes = null;
-	private $baseUrl = DOMAIN_HOST . DOMAIN_PATH;
+	private $baseUrl = DOMAIN_HOST;
 	private $request;
 	private $requestUrl;
 
@@ -25,6 +26,8 @@ class Router {
 		if (($pos = strpos($this->requestUrl, '?')) !== false) {
 			$this->requestUrl = substr($this->requestUrl, 0, $pos);
 		}
+		Utils::addTrailingSlash($this->baseUrl);
+		$this->baseUrl .= DOMAIN_PATH;
 		$this->findMatch($this->requestUrl);
 	}
 
@@ -32,12 +35,14 @@ class Router {
 	public function findMatch($requestUrl) {
 		$allRoutes = $this->routeCollection->getAllRoutes();
 		$matchFound = false;
+		
 		foreach ($allRoutes as $route) {
 			if(count($route->getVerbs()) == 0 || in_array($this->request->getMethod(), $route->getVerbs())) {
 				
 				$stringRoute = $route->getRegex();
-
+				
 				$pattern = "@^{$this->baseUrl}{$stringRoute}/?$@i";
+				
 				$matches = array();
 
 				if (!preg_match($pattern, $requestUrl, $matches)) {

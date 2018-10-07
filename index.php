@@ -1,12 +1,16 @@
 <?php
+use Core\GFStarter;
+use App\AppIndex;
 
 setShowError(true);
 
 define("ROOT_PATH", __DIR__);
+if (!defined('DS')) {
+	define('DS', DIRECTORY_SEPARATOR);
+}
+
 require_once 'Core/GFAutoload.php';
 
-use Core\GFStarter;
-use App\AppIndex;
 
 //GolgoFramework starter logic
 $GFStarter = GFStarter::getInstance();

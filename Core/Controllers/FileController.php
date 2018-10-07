@@ -63,7 +63,10 @@ class FileController {
 		return false;
 	}
 
-	//NEW FILES CONTROLLER
+	/**
+	 * Send file for download to client
+	 * @param string $path for file
+	 */
 	public function sendFile($path) {
 		$file = $path;
 		if (is_file($file)) {

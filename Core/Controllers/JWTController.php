@@ -2,7 +2,7 @@
 namespace Core\Controllers;
 
 use Firebase\JWT\JWT;
-use Core\Controllers\GFSessions\GFSessionController;
+use Core\Helpers\Utils;
 
 class JWTController {
 
@@ -67,7 +67,7 @@ class JWTController {
 
 	private static function aud()
 	{
-		$aud = GFSessionController::getInstance()->getSessionModel()->getUserIp();
+		$aud = Utils::getIp();
 		$aud .= @$_SERVER['HTTP_USER_AGENT'];
 		$aud .= gethostname();
 

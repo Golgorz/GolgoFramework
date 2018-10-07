@@ -12,8 +12,12 @@ class LoggerController {
 	private function __construct(){
 		$this->logger = new Logger('GF_LOGGER');
 		$dsn = 'mysql:dbname='.DB_NAME.';host='. MYSQL_HOST;
-		$this->logger->pushHandler(new StreamHandler(dirname(dirname(__DIR__)) . DS . 'Logs/gf_logs.log', Logger::INFO));
-		$this->logger->pushHandler(new MySQLHandler(new \PDO($dsn, DB_USER, DB_PASS)));
+		if(LOGGING_ENABLED) {
+			if(LOGGING_TO_FILE)
+				$this->logger->pushHandler(new StreamHandler(ROOT_PATH . DS . 'App/Logs/log-' . date("Y-m-d") . '.log', Logger::INFO));
+			if(LOGGING_TO_MYSQL)
+				$this->logger->pushHandler(new MySQLHandler(new \PDO($dsn, DB_USER, DB_PASS)));
+		}
 	}
 
 	public static function get() {
@@ -24,28 +28,36 @@ class LoggerController {
 	}
 
 	public function logDebug($string, array $context = array()) {
-		$this->logger->debug($string, $context);
+		if(LOGGING_ENABLED)
+			$this->logger->debug($string, $context);
 	}
 	public function logInfo($string, array $context = array()) {
-		$this->logger->info($string, $context);
+		if(LOGGING_ENABLED)
+			$this->logger->info($string, $context);
 	}
 	public function logNotice($string) {
-		$this->logger->notice($string);
+		if(LOGGING_ENABLED)
+			$this->logger->notice($string);
 	}
 	public function logWarning($string) {
-		$this->logger->warning($string);
+		if(LOGGING_ENABLED)
+			$this->logger->warning($string);
 	}
 	public function logError($string) {
-		$this->logger->error($string);
+		if(LOGGING_ENABLED)
+			$this->logger->error($string);
 	}
 	public function logCritical($string) {
-		$this->logger->critical($string);
+		if(LOGGING_ENABLED)
+			$this->logger->critical($string);
 	}
 	public function logAlert($string) {
-		$this->logger->alert($string);
+		if(LOGGING_ENABLED)
+			$this->logger->alert($string);
 	}
 	public function logEmergency($string) {
-		$this->logger->emergency($string);
+		if(LOGGING_ENABLED)
+			$this->logger->emergency($string);
 	}
 
 

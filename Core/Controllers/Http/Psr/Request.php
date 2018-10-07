@@ -316,7 +316,7 @@ class Request extends Message implements RequestInterface {
 	}
 
 	public function isValidCSRF() {
-		if($this->getMatchedRoute()->isCSRFProtected && CSRF_ENABLED) {
+		if($this->getMatchedRoute()->isCSRFProtected && CSRF_ENABLED && SESSIONS_SYSTEM_ACTIVE) {
 			GFSessionController::getInstance()->isValidCSRF($this->postParams);
 		} else {
 			return true;

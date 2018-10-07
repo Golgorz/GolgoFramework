@@ -6,7 +6,6 @@ namespace Core\Controllers\GFSessions;
 
 use Core\GFModels\GFSessionModel;
 use Core\Helpers\Utils;
-use Core\Controllers\i18nController;
 
 class GFSessionController {
 
@@ -19,6 +18,9 @@ class GFSessionController {
 	}
 
 	public static function getInstance() {
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
 		if ( !self::$instancia instanceof self) {
 			self::$instancia = new self;
 		}
